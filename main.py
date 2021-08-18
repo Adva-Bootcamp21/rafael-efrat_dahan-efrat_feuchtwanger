@@ -85,10 +85,9 @@ draw_sum_length_route_up_and_down(data.groupby(by="class").get_group(6), "blue",
 plt.show()
 
 # q3
-data1 = pd.read_csv("./data/train.csv", index_col=[0])
-data1 = data1[(data1["class"] == 1) + (data1["class"] == 16)]
+data1 = data[(data["class"] == 1) + (data["class"] == 16)]
 practice_data = data1.sample(frac=0.8)
 test_data = data1[(data1.index.isin(practice_data.index))]
-target_name_test = test_data.loc[:, ["targetName"]]
-test_data = test_data.loc[:, test_data.columns != "targetName"]
+class_test = test_data.loc[:, ["class"]]
+test_data = test_data.iloc[:, :-2]
 print(test_data)
